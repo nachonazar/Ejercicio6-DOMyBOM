@@ -1,12 +1,18 @@
-let intervalId;
+let horas = 0;
+let minutos = 0;
+let segundos = 0;
+let segundosTotales = 0;
+let timerId;
 
 const iniciarTemporizador = () => {
-  const horas = parseInt(document.getElementById("horas").value) || 0;
-  const minutos = parseInt(document.getElementById("minutos").value) || 0;
-  const segundos = parseInt(document.getElementById("segundos").value) || 0;
-  let segundosTotales = horas * 3600 + minutos * 60 + segundos;
-
-  intervalId = setInterval(() => {
+  if (timerId) return;
+  if (segundosTotales === 0) {
+    horas = parseInt(document.getElementById("horas").value) || 0;
+    minutos = parseInt(document.getElementById("minutos").value) || 0;
+    segundos = parseInt(document.getElementById("segundos").value) || 0;
+    segundosTotales = horas * 3600 + minutos * 60 + segundos;
+  }
+  timerId = setInterval(() => {
     if (segundosTotales > 0) {
       segundosTotales--;
 
@@ -27,9 +33,16 @@ const iniciarTemporizador = () => {
       const Temporizador = document.querySelector(".fs-1");
       Temporizador.textContent = `${horas} : ${minutos} : ${segundos}`;
     } else {
-      clearInterval(intervalId);
+      clearInterval(timerId);
     }
   }, 1000);
+};
+
+const pausarTemporizador = () => {
+  if (timerId) {
+    clearInterval(timerId);
+    timerId = null;
+  }
 };
 
 const reiniciarTemporizador = () => {
@@ -39,4 +52,5 @@ const btnIniciar = document.getElementById("btnIniciar");
 const btnPausar = document.getElementById("btnPausar");
 const btnReiniciar = document.getElementById("btnReiniciar");
 btnIniciar.addEventListener("click", iniciarTemporizador);
+btnPausar.addEventListener("click", pausarTemporizador);
 btnReiniciar.addEventListener("click", reiniciarTemporizador);
