@@ -6,10 +6,15 @@ let timerId;
 
 const iniciarTemporizador = () => {
   if (timerId) return;
+
+  const inputHoras = document.getElementById("horas");
+  const inputMinutos = document.getElementById("minutos");
+  const inputSegundos = document.getElementById("segundos");
+
   if (segundosTotales === 0) {
-    horas = parseInt(document.getElementById("horas").value) || 0;
-    minutos = parseInt(document.getElementById("minutos").value) || 0;
-    segundos = parseInt(document.getElementById("segundos").value) || 0;
+    horas = parseInt(inputHoras.value) || 0;
+    minutos = parseInt(inputMinutos.value) || 0;
+    segundos = parseInt(inputSegundos.value) || 0;
     segundosTotales = horas * 3600 + minutos * 60 + segundos;
   }
   timerId = setInterval(() => {
@@ -30,7 +35,12 @@ const iniciarTemporizador = () => {
         segundos = "0" + segundos;
       }
 
+      inputHoras.classList.add("d-none");
+      inputMinutos.classList.add("d-none");
+      inputSegundos.classList.add("d-none");
+
       const Temporizador = document.querySelector(".fs-1");
+      Temporizador.classList.remove("d-none");
       Temporizador.textContent = `${horas} : ${minutos} : ${segundos}`;
     } else {
       clearInterval(timerId);
