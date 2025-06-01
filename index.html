@@ -20,22 +20,27 @@
   </head>
   <body class="text-center">
     <main class="my-4">
-        <div class="btn-group">
-            <p class="fs-1 mt-5 d-none">00 : 00 : 00</p>
-            </div>
-            <div>
-              <input type="number" id="horas">
-              <input type="number" id="minutos">
-              <input type="number" id="segundos">
-            </div>
-      <div class="d-flex flex-column align-items-center">
-        <button class="btn btn-outline-primary rounded-5 mb-3" id="btnIniciar">
-        ▶
-      </button>
-      <button class="btn btn-outline-primary rounded-5 mb-3" id="btnPausar">
-        ⏸️
-      </button>
-      <button class="btn btn-secondary rounded-5" id="btnReiniciar">↻</button>
+      <div class="btn-group">
+        <p class="fs-1 mt-5 fw-bold d-none">00 : 00 : 00</p>
+        <div class="mt-5 mx-3">
+          <input type="number" id="horas" min="0" max="99"/>
+          <input type="number" id="minutos" min="0" max="59"/>
+          <input type="number" id="segundos" min="0" max="59"/>
+        </div>
+        <div class="d-flex flex-column align-items-center">
+          <button
+            class="btn btn-outline-primary rounded-5 mb-3"
+            id="btnIniciar"
+          >
+            ▶
+          </button>
+          <button class="btn btn-outline-primary rounded-5 mb-3" id="btnPausar">
+            ⏸️
+          </button>
+          <button class="btn btn-secondary rounded-5" id="btnReiniciar">
+            ↻
+          </button>
+        </div>
       </div>
     </main>
     <script src="./ejercicio6.js"></script>
